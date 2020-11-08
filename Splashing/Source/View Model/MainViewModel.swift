@@ -1,0 +1,100 @@
+//
+//  MainViewModel.swift
+//  Splashing
+//
+//  Created by 안재영 on 2020/08/30.
+//  Copyright © 2020 안재영. All rights reserved.
+//
+
+import RxOptional
+import RxCocoa
+import RxSwift
+
+class MainViewModel: ViewModel {
+  
+  struct Input {
+    let viewDidAppear       = PublishRelay<Void>()
+    let photoSelected       = PublishRelay<Photo>()
+    let isReachedBottom     = PublishRelay<Bool>()
+    let searchBarTapped     = PublishRelay<Void>()
+    let profileButtonTapped = PublishRelay<Void>()
+    let settingButtonTapped = PublishRelay<Void>()
+  }
+  
+  struct Output {
+    let latestPhotos = PublishRelay<[Photo]>()
+    let randomPhoto  = PublishRelay<Photo>()
+  }
+  
+  struct Dependency {
+    let photoService: PhotoServiceType
+  }
+  
+  let input      = Input()
+  let output     = Output()
+  let disposeBag = DisposeBag()
+  
+  private let nextURL = PublishSubject<URL?>()
+  
+  let dependency: Dependency
+  
+  init(dependency: Dependency) {
+    self.dependency = dependency
+    
+    let reachedBottom = input.isReachedBottom
+      .filterTrue()
+    
+    let loadMore = reachedBottom
+      .withLatestFrom(nextURL)
+      .filterNil()
+      .flatMap {
+        self.dependency.photoService.url($0)
+      }
+      .share()
+    
+    loadMore
+      .map { $0.nextURL }
+      .bind(to: self.nextURL)
+      .disposed(by: disposeBag)
+
+    let viewDidAppearEvent = input.viewDidAppear
+      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+      .share()
+    
+    let latestPhotos = viewDidAppearEvent
+      .flatMap {
+        self.dependency.photoService.latest()
+      }
+      .share()
+    
+    Observable
+      .combineLatest(
+        latestPhotos.map { $0.item },
+        loadMore.map { $0.item }
+      )
+      { $0 + $1 }
+      .bind(to: output.latestPhotos)
+      .disposed(by: disposeBag)
+    
+    let randomPhotos = viewDidAppearEvent
+      .flatMap {
+        self.dependency.photoService.random()
+      }
+      .share()
+    
+    latestPhotos
+      .map { $0.nextURL }
+      .bind(to: self.nextURL)
+      .disposed(by: disposeBag)
+    
+    latestPhotos
+      .map { $0.item }
+      .bind(to: output.latestPhotos)
+      .disposed(by: disposeBag)
+    
+    randomPhotos
+      .compactMap { $0.first }
+      .bind(to: output.randomPhoto)
+      .disposed(by: disposeBag)
+  }
+}
