@@ -15,14 +15,9 @@ protocol UserServiceType {
   var currentUser: Observable<User?> { get }
 }
 
-class UserService: UserServiceType {
-  let networking: NetworkingProtocol
-  
-  init(networking: NetworkingProtocol) {
-    self.networking = networking
-  }
-  
+class UserService: BaseService, UserServiceType {
   let userSubject = ReplaySubject<User?>.create(bufferSize: 1)
+    
   lazy var currentUser: Observable<User?> = self.userSubject.asObservable()
     .startWith(nil)
     .share(replay: 1)

@@ -17,7 +17,7 @@ protocol AuthServiceType {
   var accessToken: AccessToken? { get }
 }
 
-class AuthService: NSObject, AuthServiceType {
+class AuthService: NSObject, BaseService, AuthServiceType {
   let callbackSubject = PublishSubject<String>()
   let keychain        = Keychain(service: "com.splashing.ios")
 

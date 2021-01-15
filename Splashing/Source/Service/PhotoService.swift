@@ -19,13 +19,7 @@ protocol PhotoServiceType {
   func downloadLink(id: String) -> Single<Link>
 }
 
-class PhotoService: PhotoServiceType {
-  let networking: NetworkingProtocol
-  
-  init(networking: NetworkingProtocol) {
-    self.networking = networking
-  }
-  
+class PhotoService: BaseService, PhotoServiceType {
   func url(_ url: URL) -> Single<List<Photo>> {
     return self.networking.request(.url(url))
       .mapJSON(List<Photo>.self)
