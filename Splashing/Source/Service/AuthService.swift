@@ -41,10 +41,9 @@ class AuthService: NSObject, AuthServiceType {
     guard var component  = URLComponents(string: API.authorizeURL) else { return .never() }
     component.queryItems = authorizeQueryItems
     
-    self.authenticateSession = ASWebAuthenticationSession(
-      url:               component.url!,
-      callbackURLScheme: "splashing://oauth/callback",
-      completionHandler: { url, error in
+    self.authenticateSession = ASWebAuthenticationSession(url: component.url!,
+                                                          callbackURLScheme: "splashing://oauth/callback",
+                                                          completionHandler: { url, error in
         guard let code = url?.value(for: "code") else { return }
         self.callback(code: code)
     })
@@ -105,9 +104,9 @@ class AuthService: NSObject, AuthServiceType {
 
   private func loadAccessToken() -> AccessToken? {
     guard let number = self.keychain["access_token"],
-    let type         = self.keychain["token_type"],
-    let scope        = self.keychain["scope"]
-    else { return nil }
+          let type   = self.keychain["token_type"],
+          let scope  = self.keychain["scope"] else { return nil }
+    
     return AccessToken(number: number, type: type, scope: scope)
   }
   
