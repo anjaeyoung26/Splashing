@@ -19,4 +19,8 @@ class ProfileCoordinator: CoordinatorType {
         
         viewModel.coordinator = self
     }
+    
+    func performTransition(_ transition: Transition) {
+        
+    }
 }
