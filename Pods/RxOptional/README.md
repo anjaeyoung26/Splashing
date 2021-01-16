@@ -1,20 +1,20 @@
 # RxOptional
 
-[![CircleCI](https://img.shields.io/circleci/project/github/RxSwiftCommunity/RxOptional/master.svg)](https://circleci.com/gh/RxSwiftCommunity/RxOptional/tree/master)
+[![Build Status](https://travis-ci.org/RxSwiftCommunity/RxOptional.svg?branch=master)](https://travis-ci.org/RxSwiftCommunity/RxOptional)
 [![Version](https://img.shields.io/cocoapods/v/RxOptional.svg?style=flat)](http://cocoapods.org/pods/RxOptional)
 [![License](https://img.shields.io/cocoapods/l/RxOptional.svg?style=flat)](http://cocoapods.org/pods/RxOptional)
 [![Platform](https://img.shields.io/cocoapods/p/RxOptional.svg?style=flat)](http://cocoapods.org/pods/RxOptional)
+
 
 RxSwift extensions for Swift optionals and "Occupiable" types.
 
 ## Usage
 
-All operators are also available on `Driver` and `Signal`, unless otherwise noted.
+All operators are also available on `Driver`, unless otherwise noted.
 
 ### Optional Operators
 
 ##### filterNil
-
 ```swift
 Observable<String?>
     .of("One", nil, "Three")
@@ -22,15 +22,13 @@ Observable<String?>
     // Type is now Observable<String>
     .subscribe { print($0) }
 ```
-
 ```text
-next(One)
-next(Three)
-completed
+Next(One)
+Next(Three)
+Completed
 ```
 
 ##### replaceNilWith
-
 ```swift
 Observable<String?>
     .of("One", nil, "Three")
@@ -38,20 +36,17 @@ Observable<String?>
     // Type is now Observable<String>
     .subscribe { print($0) }
 ```
-
 ```text
-next(One)
-next(Two)
-next(Three)
-completed
+Next(One)
+Next(Two)
+Next(Three)
+Completed
 ```
 
 ##### errorOnNil
-
 Unavailable on `Driver`, because `Driver`s cannot error out.
 
-By default errors with `RxOptionalError.foundNilWhileUnwrappingOptional`.
-
+By default errors with `RxOptionalError.FoundNilWhileUnwrappingOptional`.
 ```swift
 Observable<String?>
     .of("One", nil, "Three")
@@ -59,14 +54,12 @@ Observable<String?>
     // Type is now Observable<String>
     .subscribe { print($0) }
 ```
-
 ```text
-next(One)
-error(Found nil while trying to unwrap type <Optional<String>>)
+Next(One)
+Error(Found nil while trying to unwrap type <Optional<String>>)
 ```
 
 ##### catchOnNil
-
 ```swift
 Observable<String?>
     .of("One", nil, "Three")
@@ -76,29 +69,26 @@ Observable<String?>
     // Type is now Observable<String>
     .subscribe { print($0) }
 ```
-
 ```text
-next(One)
-next(A String from a new Observable)
-next(Three)
-completed
+Next(One)
+Next(A String from a new Observable)
+Next(Three)
+Completed
 ```
 
 ##### distinctUntilChanged
-
 ```swift
 Observable<Int?>
     .of(5, 6, 6, nil, nil, 3)
     .distinctUntilChanged()
     .subscribe { print($0) }
 ```
-
 ```text
-next(Optional(5))
-next(Optional(6))
-next(nil)
-next(Optional(3))
-completed
+Next(Optional(5))
+Next(Optional(6))
+Next(nil)
+Next(Optional(3))
+Completed
 ```
 
 ### Occupiable Operators
@@ -115,40 +105,34 @@ For now the types listed above conform to `Occupiable`. You can also conform
 custom types to `Occupiable`.
 
 ##### filterEmpty
-
 ```swift
 Observable<[String]>
     .of(["Single Element"], [], ["Two", "Elements"])
     .filterEmpty()
     .subscribe { print($0) }
 ```
-
 ```text
-next(["Single Element"])
-next(["Two", "Elements"])
-completed
+Next(["Single Element"])
+Next(["Two", "Elements"])
+Completed
 ```
 
 ##### errorOnEmpty
-
 Unavailable on `Driver`, because `Driver`s cannot error out.
 
-By default errors with `RxOptionalError.emptyOccupiable`.
-
+By default errors with `RxOptionalError.EmptyOccupiable`.
 ```swift
 Observable<[String]>
     .of(["Single Element"], [], ["Two", "Elements"])
     .errorOnEmpty()
     .subscribe { print($0) }
 ```
-
 ```text
-next(["Single Element"])
-error(Empty occupiable of type <Array<String>>)
+Next(["Single Element"])
+Error(Empty occupiable of type <Array<String>>)
 ```
 
 ##### catchOnEmpty
-
 ```swift
 Observable<[String]>
     .of(["Single Element"], [], ["Two", "Elements"])
@@ -157,12 +141,11 @@ Observable<[String]>
     }
     .subscribe { print($0) }
 ```
-
 ```text
-next(["Single Element"])
-next(["Not Empty"])
-next(["Two", "Elements"])
-completed
+Next(["Single Element"])
+Next(["Not Empty"])
+Next(["Two", "Elements"])
+Completed
 ```
 
 ## Running Examples.playground
@@ -199,21 +182,6 @@ github "RxSwiftCommunity/RxOptional" ~> 3.1.3
 
 ```
 $ carthage update
-```
-
-### [Swift Package Manager](https://swift.org/package-manager)
-
-To use RxOptional as a Swift Package Manager package just add the following in your Package.swift file.
-
-```swift
-import PackageDescription
-
-let package = Package(
-    name: "ProjectName",
-    dependencies: [
-        .Package(url: "https://github.com/RxSwiftCommunity/RxOptional")
-    ]
-)
 ```
 
 ## Author

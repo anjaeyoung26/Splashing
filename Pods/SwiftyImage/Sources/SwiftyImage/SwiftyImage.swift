@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Suyeol Jeon. All rights reserved.
 //
 
+#if os(iOS) || os(tvOS)
 import UIKit
 
 public enum BorderAlignment {
@@ -59,7 +60,6 @@ public func + (lhs: UIImage, rhs: UIImage) -> UIImage {
       rhsRect.size = lhsRect.size
     }
 
-    lhs.draw(in: lhsRect)
     rhs.draw(in: rhsRect)
   }
 }
@@ -124,6 +124,10 @@ open class ImageDrawer {
   private static var cachedImages = [AnyHashable: UIImage]()
   private var cacheKey: AnyHashable {
     var hasher = Hasher()
+
+    if #available(iOS 13, tvOS 13.0, *) {
+      hasher.combine(UITraitCollection.current.userInterfaceStyle)
+    }
 
     hasher.combine(self.colors)
     hasher.combine(self.colorLocations)
@@ -468,3 +472,4 @@ public extension UIImage {
   }
 
 }
+#endif
