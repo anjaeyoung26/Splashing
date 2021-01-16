@@ -9,6 +9,7 @@
 enum Transition {
     case showLogin
     case showMain
-    case showDetail
+    case showDetail(Photo)
     case showSearch
+    case showProfile
 }

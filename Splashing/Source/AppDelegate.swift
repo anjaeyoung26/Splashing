@@ -15,16 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let disposeBag = DisposeBag()
     
     var window: UIWindow?
-    var appCoordinator: AppCoordinator?
+    
+    private let splashCoordinator = splashCoordinator()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.backgroundColor = .white
         
-        appCoordinator = AppCoordinator(window: window!)
-        appCoordinator?.start()
-            .subscribe()
-            .disposed(by: disposeBag)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.rootViewController = splashCoordinator.baseViewController
+        window?.backgroundColor = .white
+        window?.makeKeyAndVisible()
         
         return true
     }
