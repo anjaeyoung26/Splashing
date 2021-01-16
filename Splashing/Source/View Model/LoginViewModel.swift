@@ -19,30 +19,25 @@ class LoginViewModel: ViewModel {
     let isLoading   = ActivityIndicator()
     let setLoggedIn = PublishRelay<Bool>()
   }
-  
-  struct Dependency {
-    let authService: AuthServiceType
-    let userService: UserServiceType
-  }
-  
+
   let input      = Input()
   let output     = Output()
   let disposeBag = DisposeBag()
-  
-  let dependency: Dependency
-  
-  init(dependency: Dependency) {
-    self.dependency = dependency
+    
+  let provider: ServiceProviderType
+
+  init(provider: ServiceProviderType) {
+    self.provider = provider
     
     let setLoggedIn = input.loginButtonTapped
       .flatMap {
-        self.dependency.authService.authorize()
+        self.provider.authService.authorize()
       }
       .asObservable()
     
     setLoggedIn
       .flatMap {
-        self.dependency.userService.fetch()
+        self.provider.userService.fetch()
           .trackActivity(self.output.isLoading)
       }
       .map { true }

@@ -27,15 +27,15 @@ class SplashViewModel: ViewModel {
   let input      = Input()
   let output     = Output()
   let disposeBag = DisposeBag()
+
+  let provider: ServiceProviderType
   
-  let dependency: Dependency
-  
-  init(dependency: Dependency) {
-    self.dependency = dependency
+  init(provider: ServiceProviderType) {
+    self.provider = provider
     
     input.viewDidAppear
       .flatMap {
-        self.dependency.userService.fetch()
+        self.provider.userService.fetch()
           .trackActivity(self.output.isLoading)
       }
       .asObservable()

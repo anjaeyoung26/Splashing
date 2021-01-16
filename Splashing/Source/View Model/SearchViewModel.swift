@@ -28,14 +28,14 @@ class SearchViewModel: ViewModel {
   let output     = Output()
   let disposeBag = DisposeBag()
   
-  let dependency: Dependency
+  let provider: ServiceProviderType
   
-  init(dependency: Dependency) {
-    self.dependency = dependency
+  init(provider: ServiceProviderType) {
+    self.provider = provider
     
     input.searchButtonTapped
       .flatMap {
-        self.dependency.photoService.search(query: $0)
+        self.provider.photoService.search(query: $0)
       }
       .bind(to: output.searchResult)
       .disposed(by: disposeBag)

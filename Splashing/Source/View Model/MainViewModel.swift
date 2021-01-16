@@ -25,21 +25,17 @@ class MainViewModel: ViewModel {
     let latestPhotos = PublishRelay<[Photo]>()
     let randomPhoto  = PublishRelay<Photo>()
   }
-  
-  struct Dependency {
-    let photoService: PhotoServiceType
-  }
-  
+
   let input      = Input()
   let output     = Output()
   let disposeBag = DisposeBag()
   
+  let provider: ServiceProviderType
+    
   private let nextURL = PublishSubject<URL?>()
-  
-  let dependency: Dependency
-  
-  init(dependency: Dependency) {
-    self.dependency = dependency
+
+  init(provider: ServiceProviderType) {
+    self.provider = provider
     
     let reachedBottom = input.isReachedBottom
       .filterTrue()
@@ -48,7 +44,7 @@ class MainViewModel: ViewModel {
       .withLatestFrom(nextURL)
       .filterNil()
       .flatMap {
-        self.dependency.photoService.url($0)
+        self.provider.photoService.url($0)
       }
       .share()
     
@@ -63,7 +59,7 @@ class MainViewModel: ViewModel {
     
     let latestPhotos = viewDidAppearEvent
       .flatMap {
-        self.dependency.photoService.latest()
+        self.provider.photoService.latest()
       }
       .share()
     
@@ -78,7 +74,7 @@ class MainViewModel: ViewModel {
     
     let randomPhotos = viewDidAppearEvent
       .flatMap {
-        self.dependency.photoService.random()
+        self.provider.photoService.random()
       }
       .share()
     

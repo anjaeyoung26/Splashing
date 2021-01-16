@@ -20,23 +20,19 @@ class DetailViewModel: ViewModel {
   struct Output {
     let downloadResult = PublishRelay<Bool>()
   }
-
-  struct Dependency {
-    let photoService: PhotoServiceType
-  }
-
+    
   let input      = Input()
   let output     = Output()
   let disposeBag = DisposeBag()
-
-  let dependency: Dependency
+    
+  let provider: ServiceProviderType
   
-  init(dependency: Dependency) {
-    self.dependency = dependency
+  init(provider: ServiceProviderType) {
+    self.provider = provider
     
     let downloadLink = input.currentPhoto
       .flatMap {
-        self.dependency.photoService.downloadLink(id: $0.id)
+        self.provider.photoService.downloadLink(id: $0.id)
       }
       .share()
     

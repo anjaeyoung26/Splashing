@@ -23,32 +23,26 @@ class ProfileViewModel: ViewModel {
     let currentUser    = PublishRelay<User?>()
     let photos         = PublishRelay<[Photo]>()
   }
-  
-  struct Dependency {
-    let authService: AuthServiceType
-    let userService: UserServiceType
-    let photoService: PhotoServiceType
-  }
 
   let input      = Input()
   let output     = Output()
   let disposeBag = DisposeBag()
+    
+  let provider: ServiceProviderType
   
-  let dependency: Dependency
-  
-  init(dependency: Dependency) {
-    self.dependency = dependency
+  init(provider: ServiceProviderType) {
+    self.provider = provider
     
     input.logoutButtonTapped
       .map {
-        self.dependency.authService.logout()
+        self.provider.authService.logout()
       }
       .bind(to: output.completeLogout)
       .disposed(by: disposeBag)
     
     let currentUser = input.viewDidAppear
       .flatMap {
-        self.dependency.userService.currentUser
+        self.provider.userService.currentUser
       }
       .share()
     
@@ -68,9 +62,9 @@ class ProfileViewModel: ViewModel {
       .flatMap { name, trigger -> Single<[Photo]> in
         switch trigger {
         case 0:
-          return self.dependency.photoService.users(name: name)
+          return self.provider.photoService.users(name: name)
         case 1:
-          return self.dependency.photoService.liked(name: name)
+          return self.provider.photoService.liked(name: name)
         default:
           return .never()
         }
