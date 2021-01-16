@@ -30,6 +30,8 @@ class ProfileViewModel: ViewModel {
     
     let provider: ServiceProviderType
     
+    weak var coordinator: CoordinatorType?
+    
     init(provider: ServiceProviderType) {
         self.provider = provider
         
