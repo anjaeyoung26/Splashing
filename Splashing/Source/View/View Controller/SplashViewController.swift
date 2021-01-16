@@ -10,35 +10,44 @@ import RxSwift
 import UIKit
 
 class SplashViewController: BaseViewController {
-  
-  let activityIndicator = UIActivityIndicatorView(style: .large).then {
-    $0.color = .white
-  }
-  
-  var viewModel: SplashViewModel!
-
-  override func viewDidLoad() {
-    super.viewDidLoad()
-  }
-  
-  override func addSubview() {
-    view.addSubview(activityIndicator)
-  }
-  
-  override func setConstraints() {
-    activityIndicator.snp.makeConstraints {
-      $0.center.equalToSuperview()
-    }
-  }
-  
-  override func binding() {
-    self.rx.viewDidAppear
-      .bind(to: viewModel.input.viewDidAppear)
-      .disposed(by: disposeBag)
     
-    viewModel.output.isLoading
-      .asDriver()
-      .drive(activityIndicator.rx.isAnimating)
-      .disposed(by: disposeBag)
-  }
+    let activityIndicator = UIActivityIndicatorView(style: .large).then {
+        $0.color = .white
+    }
+    
+    let viewModel: SplashViewModel
+    
+    init(viewModel: SplashViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    override func addSubview() {
+        view.addSubview(activityIndicator)
+    }
+    
+    override func setConstraints() {
+        activityIndicator.snp.makeConstraints {
+            $0.center.equalToSuperview()
+        }
+    }
+    
+    override func binding() {
+        self.rx.viewDidAppear
+            .bind(to: viewModel.input.viewDidAppear)
+            .disposed(by: disposeBag)
+        
+        viewModel.output.isLoading
+            .asDriver()
+            .drive(activityIndicator.rx.isAnimating)
+            .disposed(by: disposeBag)
+    }
 }
