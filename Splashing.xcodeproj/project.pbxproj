@@ -32,7 +32,6 @@
 		498F8EF124FAAEBD005637F5 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8EF024FAAEBD005637F5 /* User.swift */; };
 		498F8EF624FB3654005637F5 /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8EF524FB3654005637F5 /* UIViewController+Rx.swift */; };
 		498F8EF824FB3741005637F5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8EF724FB3741005637F5 /* BaseViewController.swift */; };
-		498F8EFC24FB3A57005637F5 /* AppDependency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8EFB24FB3A57005637F5 /* AppDependency.swift */; };
 		498F8EFE24FB3B83005637F5 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8EFD24FB3B83005637F5 /* ViewModel.swift */; };
 		498F8F0024FB3BA3005637F5 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8EFF24FB3BA3005637F5 /* MainViewModel.swift */; };
 		498F8F0F24FB7929005637F5 /* Icon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498F8F0E24FB7929005637F5 /* Icon.swift */; };
@@ -116,7 +115,6 @@
 		498F8EF024FAAEBD005637F5 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		498F8EF524FB3654005637F5 /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		498F8EF724FB3741005637F5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		498F8EFB24FB3A57005637F5 /* AppDependency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDependency.swift; sourceTree = "<group>"; };
 		498F8EFD24FB3B83005637F5 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		498F8EFF24FB3BA3005637F5 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		498F8F0E24FB7929005637F5 /* Icon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icon.swift; sourceTree = "<group>"; };
@@ -260,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				498F8EC424FAA5A8005637F5 /* AppDelegate.swift */,
-				498F8EFB24FB3A57005637F5 /* AppDependency.swift */,
 				493AAE372517624D00F927B2 /* Type */,
 				495C7DBD25B171D3002964BE /* Coordinators */,
 				499E8BF52503F1A300AC3E90 /* Logging */,
@@ -647,7 +644,6 @@
 				498F8F4324FE0290005637F5 /* AuthService.swift in Sources */,
 				499E8C60250F3CEE00AC3E90 /* StoreManager.swift in Sources */,
 				498F8EEA24FAA95C005637F5 /* Networking.swift in Sources */,
-				498F8EFC24FB3A57005637F5 /* AppDependency.swift in Sources */,
 				499E8C66250F460300AC3E90 /* UserDefaults.swift in Sources */,
 				49385BF9251F7F6100FEAF87 /* UILabel+Rx.swift in Sources */,
 				498F8EFE24FB3B83005637F5 /* ViewModel.swift in Sources */,
