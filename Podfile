@@ -11,7 +11,6 @@ target 'Splashing' do
   pod 'RxOptional'
   pod 'RxSwift'
   pod 'SnapKit'
-  pod 'Swinject'
   pod 'SwiftyImage', '~> 1.1'
   pod 'Then'
   pod 'Toaster'
