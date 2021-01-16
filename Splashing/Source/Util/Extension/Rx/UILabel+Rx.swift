@@ -10,12 +10,12 @@ import RxCocoa
 import RxSwift
 
 extension Reactive where Base: UILabel {
-  func animatedText(duration: TimeInterval, options: UIView.AnimationOptions, completion: ((Bool) -> Void)? = nil) -> Binder<String> {
-    return Binder(self.base) { label, text in
-      let animations: (() -> Void) = {
-        label.text = text
-      }
-      UIView.transition(with: label, duration: duration, options: options, animations: animations, completion: completion)
+    func animatedText(duration: TimeInterval, options: UIView.AnimationOptions, completion: ((Bool) -> Void)? = nil) -> Binder<String> {
+        return Binder(self.base) { label, text in
+            let animations: (() -> Void) = {
+                label.text = text
+            }
+            UIView.transition(with: label, duration: duration, options: options, animations: animations, completion: completion)
+        }
     }
-  }
 }

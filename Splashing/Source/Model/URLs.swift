@@ -9,11 +9,11 @@
 import Foundation
 
 extension Photo {
-  struct URLs: Decodable {
-    var raw    : String
-    var full   : String
-    var regular: String
-    var small  : String
-    var thumb  : String
-  }
+    struct URLs: Decodable {
+        var raw    : String
+        var full   : String
+        var regular: String
+        var small  : String
+        var thumb  : String
+    }
 }

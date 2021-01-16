@@ -9,11 +9,11 @@
 import Foundation
 
 struct Response {
-  let data: Data
-  let response: HTTPURLResponse
-
-  init(data: Data, response: HTTPURLResponse) {
-    self.data     = data
-    self.response = response
-  }
+    let data: Data
+    let response: HTTPURLResponse
+    
+    init(data: Data, response: HTTPURLResponse) {
+        self.data     = data
+        self.response = response
+    }
 }

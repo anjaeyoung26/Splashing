@@ -9,7 +9,7 @@
 import UIKit
 
 enum Screen {
-  static let width  = UIScreen.main.bounds.width
-  static let height = UIScreen.main.bounds.height
-  static let frame  = CGRect(x: 0, y: 0, width: Screen.width, height: Screen.height)
+    static let width  = UIScreen.main.bounds.width
+    static let height = UIScreen.main.bounds.height
+    static let frame  = CGRect(x: 0, y: 0, width: Screen.width, height: Screen.height)
 }

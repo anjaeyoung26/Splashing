@@ -9,22 +9,22 @@
 import UIKit
 
 class BaseCollectionViewCell: UICollectionViewCell {
-  override init(frame: CGRect) {
-    super.init(frame: frame)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
+        addSubview()
+        setConstraint()
+    }
     
-    addSubview()
-    setConstraint()
-  }
-  
-  required init?(coder: NSCoder) {
-    super.init(coder: coder)
-  }
-  
-  func addSubview() {
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+    }
     
-  }
-  
-  func setConstraint() {
+    func addSubview() {
+        
+    }
     
-  }
+    func setConstraint() {
+        
+    }
 }

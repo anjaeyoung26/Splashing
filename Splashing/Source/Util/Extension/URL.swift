@@ -10,22 +10,22 @@ import SafariServices
 import UIKit
 
 extension URL {
-  func value(for query: String) -> String? {
-    guard let component = URLComponents(string: absoluteString) else { return nil }
-    
-    if let items = component.queryItems {
-      for item in items where item.name == query {
-        return item.value
-      }
+    func value(for query: String) -> String? {
+        guard let component = URLComponents(string: absoluteString) else { return nil }
+        
+        if let items = component.queryItems {
+            for item in items where item.name == query {
+                return item.value
+            }
+        }
+        return nil
     }
-    return nil
-  }
-  
-  func open(presenter: UIViewController) {
-    guard UIApplication.shared.canOpenURL(self) else { return }
     
-    let safariViewControlller = SFSafariViewController(url: self)
-    
-    presenter.present(safariViewControlller, animated: true, completion: nil)
-  }
+    func open(presenter: UIViewController) {
+        guard UIApplication.shared.canOpenURL(self) else { return }
+        
+        let safariViewControlller = SFSafariViewController(url: self)
+        
+        presenter.present(safariViewControlller, animated: true, completion: nil)
+    }
 }

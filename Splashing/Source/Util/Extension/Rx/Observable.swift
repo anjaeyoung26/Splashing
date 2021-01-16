@@ -9,19 +9,19 @@
 import RxSwift
 
 extension ObservableType where Element == Bool {
-  func filterTrue() -> Observable<Element> {
-    return self.flatMap { element -> Observable<Element> in
-      if element {
-        return Observable<Element>.just(element)
-      } else {
-        return Observable<Element>.empty()
-      }
+    func filterTrue() -> Observable<Element> {
+        return self.flatMap { element -> Observable<Element> in
+            if element {
+                return Observable<Element>.just(element)
+            } else {
+                return Observable<Element>.empty()
+            }
+        }
     }
-  }
 }
 
 extension ObservableType {
-  func merge(with object: Observable<Element>) -> Observable<Element> {
-    return Observable.merge(self.asObservable(), object)
-  }
+    func merge(with object: Observable<Element>) -> Observable<Element> {
+        return Observable.merge(self.asObservable(), object)
+    }
 }

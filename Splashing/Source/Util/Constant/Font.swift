@@ -9,12 +9,12 @@
 import UIKit
 
 enum Font {
-  enum Helvetica {
-    static func bold(size: CGFloat) -> UIFont {
-      return UIFont(name: "HelveticaNeue-Bold",   size: size)!
+    enum Helvetica {
+        static func bold(size: CGFloat) -> UIFont {
+            return UIFont(name: "HelveticaNeue-Bold",   size: size)!
+        }
+        static func medium(size: CGFloat) -> UIFont {
+            return UIFont(name: "HelveticaNeue-Medium", size: size)!
+        }
     }
-    static func medium(size: CGFloat) -> UIFont {
-      return UIFont(name: "HelveticaNeue-Medium", size: size)!
-    }
-  }
 }

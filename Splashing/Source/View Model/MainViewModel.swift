@@ -11,86 +11,88 @@ import RxCocoa
 import RxSwift
 
 class MainViewModel: ViewModel {
-  
-  struct Input {
-    let viewDidAppear       = PublishRelay<Void>()
-    let photoSelected       = PublishRelay<Photo>()
-    let isReachedBottom     = PublishRelay<Bool>()
-    let searchBarTapped     = PublishRelay<Void>()
-    let profileButtonTapped = PublishRelay<Void>()
-    let settingButtonTapped = PublishRelay<Void>()
-  }
-  
-  struct Output {
-    let latestPhotos = PublishRelay<[Photo]>()
-    let randomPhoto  = PublishRelay<Photo>()
-  }
-
-  let input      = Input()
-  let output     = Output()
-  let disposeBag = DisposeBag()
-  
-  let provider: ServiceProviderType
     
-  private let nextURL = PublishSubject<URL?>()
-
-  init(provider: ServiceProviderType) {
-    self.provider = provider
+    struct Input {
+        let viewDidAppear       = PublishRelay<Void>()
+        let photoSelected       = PublishRelay<Photo>()
+        let isReachedBottom     = PublishRelay<Bool>()
+        let searchBarTapped     = PublishRelay<Void>()
+        let profileButtonTapped = PublishRelay<Void>()
+        let settingButtonTapped = PublishRelay<Void>()
+    }
     
-    let reachedBottom = input.isReachedBottom
-      .filterTrue()
+    struct Output {
+        let latestPhotos = PublishRelay<[Photo]>()
+        let randomPhoto  = PublishRelay<Photo>()
+    }
     
-    let loadMore = reachedBottom
-      .withLatestFrom(nextURL)
-      .filterNil()
-      .flatMap {
-        self.provider.photoService.url($0)
-      }
-      .share()
+    let input      = Input()
+    let output     = Output()
+    let disposeBag = DisposeBag()
     
-    loadMore
-      .map { $0.nextURL }
-      .bind(to: self.nextURL)
-      .disposed(by: disposeBag)
-
-    let viewDidAppearEvent = input.viewDidAppear
-      .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
-      .share()
+    let provider: ServiceProviderType
     
-    let latestPhotos = viewDidAppearEvent
-      .flatMap {
-        self.provider.photoService.latest()
-      }
-      .share()
+    weak var coordinator: CoordinatorType?
     
-    Observable
-      .combineLatest(
-        latestPhotos.map { $0.item },
-        loadMore.map { $0.item }
-      )
-      { $0 + $1 }
-      .bind(to: output.latestPhotos)
-      .disposed(by: disposeBag)
+    private let nextURL = PublishSubject<URL?>()
     
-    let randomPhotos = viewDidAppearEvent
-      .flatMap {
-        self.provider.photoService.random()
-      }
-      .share()
-    
-    latestPhotos
-      .map { $0.nextURL }
-      .bind(to: self.nextURL)
-      .disposed(by: disposeBag)
-    
-    latestPhotos
-      .map { $0.item }
-      .bind(to: output.latestPhotos)
-      .disposed(by: disposeBag)
-    
-    randomPhotos
-      .compactMap { $0.first }
-      .bind(to: output.randomPhoto)
-      .disposed(by: disposeBag)
-  }
+    init(provider: ServiceProviderType) {
+        self.provider = provider
+        
+        let reachedBottom = input.isReachedBottom
+            .filterTrue()
+        
+        let loadMore = reachedBottom
+            .withLatestFrom(nextURL)
+            .filterNil()
+            .flatMap {
+                self.provider.photoService.url($0)
+            }
+            .share()
+        
+        loadMore
+            .map { $0.nextURL }
+            .bind(to: self.nextURL)
+            .disposed(by: disposeBag)
+        
+        let viewDidAppearEvent = input.viewDidAppear
+            .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
+            .share()
+        
+        let latestPhotos = viewDidAppearEvent
+            .flatMap {
+                self.provider.photoService.latest()
+            }
+            .share()
+        
+        Observable
+            .combineLatest(
+                latestPhotos.map { $0.item },
+                loadMore.map { $0.item }
+            )
+            { $0 + $1 }
+            .bind(to: output.latestPhotos)
+            .disposed(by: disposeBag)
+        
+        let randomPhotos = viewDidAppearEvent
+            .flatMap {
+                self.provider.photoService.random()
+            }
+            .share()
+        
+        latestPhotos
+            .map { $0.nextURL }
+            .bind(to: self.nextURL)
+            .disposed(by: disposeBag)
+        
+        latestPhotos
+            .map { $0.item }
+            .bind(to: output.latestPhotos)
+            .disposed(by: disposeBag)
+        
+        randomPhotos
+            .compactMap { $0.first }
+            .bind(to: output.randomPhoto)
+            .disposed(by: disposeBag)
+    }
 }

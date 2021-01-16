@@ -9,11 +9,11 @@
 import Foundation
 
 struct List<Item> {
-  var item   : [Item]
-  var nextURL: URL?
-  
-  init(item: [Item], nextURL: URL? = nil) {
-    self.item    = item
-    self.nextURL = nextURL
-  }
+    var item   : [Item]
+    var nextURL: URL?
+    
+    init(item: [Item], nextURL: URL? = nil) {
+        self.item    = item
+        self.nextURL = nextURL
+    }
 }

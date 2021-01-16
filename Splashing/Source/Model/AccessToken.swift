@@ -7,21 +7,21 @@
 //
 
 struct AccessToken: Decodable {
-  var number: String
-  var type  : String
-  var scope : String
-
-  init(number: String, type: String, scope: String) {
-    self.number = number
-    self.type   = type
-    self.scope  = scope
-  }
+    var number: String
+    var type  : String
+    var scope : String
+    
+    init(number: String, type: String, scope: String) {
+        self.number = number
+        self.type   = type
+        self.scope  = scope
+    }
 }
 
 extension AccessToken {
-  enum CodingKeys: String, CodingKey {
-    case number = "access_token"
-    case type   = "token_type"
-    case scope
-  }
+    enum CodingKeys: String, CodingKey {
+        case number = "access_token"
+        case type   = "token_type"
+        case scope
+    }
 }

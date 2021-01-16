@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIScrollView {
-  func isReachedBottom() -> Bool {
-    return self.contentOffset.y >= (self.contentSize.height - self.frame.size.height)
-  }
+    func isReachedBottom() -> Bool {
+        return self.contentOffset.y >= (self.contentSize.height - self.frame.size.height)
+    }
 }

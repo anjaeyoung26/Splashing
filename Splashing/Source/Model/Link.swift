@@ -7,5 +7,5 @@
 //
 
 struct Link: Decodable {
-  var url: String
+    var url: String
 }

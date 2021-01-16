@@ -9,11 +9,11 @@
 import UIKit
 
 enum SFSymbol {
-  static func download(size: CGFloat) -> UIImage {
-  let configuration = UIImage.SymbolConfiguration(pointSize: size)
-    return UIImage(systemName: "square.and.arrow.down", withConfiguration: configuration)!
-  }
-
-  static let heart  = UIImage(systemName: "heart.fill")
-  static let back   = UIImage(systemName: "chevron.left")
+    static func download(size: CGFloat) -> UIImage {
+        let configuration = UIImage.SymbolConfiguration(pointSize: size)
+        return UIImage(systemName: "square.and.arrow.down", withConfiguration: configuration)!
+    }
+    
+    static let heart  = UIImage(systemName: "heart.fill")
+    static let back   = UIImage(systemName: "chevron.left")
 }

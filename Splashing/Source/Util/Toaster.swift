@@ -9,12 +9,12 @@
 import Toaster
 
 class Toaster {
-  static func show(message: String, delay: TimeInterval, completion: (() -> ())?) {
-    let toast                  = Toast(text: message, duration: delay)
-    toast.view.font            = Font.Helvetica.medium(size: 16)
-    toast.view.backgroundColor = Color.charcoal
-    toast.view.textColor       = .white
-    toast.completionBlock      = completion
-    toast.show()
-  }
+    static func show(message: String, delay: TimeInterval, completion: (() -> ())?) {
+        let toast                  = Toast(text: message, duration: delay)
+        toast.view.font            = Font.Helvetica.medium(size: 16)
+        toast.view.backgroundColor = Color.charcoal
+        toast.view.textColor       = .white
+        toast.completionBlock      = completion
+        toast.show()
+    }
 }

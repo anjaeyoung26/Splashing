@@ -90,6 +90,9 @@
 		499E8C66250F460300AC3E90 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E8C65250F460300AC3E90 /* UserDefaults.swift */; };
 		499E8C68250FBFE200AC3E90 /* ShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E8C67250FBFE200AC3E90 /* ShareManager.swift */; };
 		499E8C6E25126D8F00AC3E90 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499E8C6D25126D8F00AC3E90 /* Scene.swift */; };
+		49B2184225B272FF00105287 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B2184125B272FF00105287 /* LoginCoordinator.swift */; };
+		49B2184525B2730500105287 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B2184425B2730500105287 /* MainCoordinator.swift */; };
+		49B2184825B2731000105287 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B2184725B2731000105287 /* SearchCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -179,6 +182,9 @@
 		499E8C65250F460300AC3E90 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		499E8C67250FBFE200AC3E90 /* ShareManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareManager.swift; sourceTree = "<group>"; };
 		499E8C6D25126D8F00AC3E90 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
+		49B2184125B272FF00105287 /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		49B2184425B2730500105287 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		49B2184725B2731000105287 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		816BC0C6C421EB9DB06D5F02 /* Pods-Splashing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splashing.release.xcconfig"; path = "Target Support Files/Pods-Splashing/Pods-Splashing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,6 +224,9 @@
 				495C7DC125B17217002964BE /* Transitionable.swift */,
 				495C7DC425B17233002964BE /* CoordinatorType.swift */,
 				495C7DC725B17276002964BE /* SplashCoordinator.swift */,
+				49B2184125B272FF00105287 /* LoginCoordinator.swift */,
+				49B2184425B2730500105287 /* MainCoordinator.swift */,
+				49B2184725B2731000105287 /* SearchCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -616,11 +625,13 @@
 				498F8F3824FD6C42005637F5 /* LoginViewModel.swift in Sources */,
 				499E8C68250FBFE200AC3E90 /* ShareManager.swift in Sources */,
 				499E8BEA250368D300AC3E90 /* PhotoService.swift in Sources */,
+				49B2184825B2731000105287 /* SearchCoordinator.swift in Sources */,
 				499E8C5B250DA77D00AC3E90 /* SearchCoordinator.swift in Sources */,
 				499E8BDB2502021300AC3E90 /* SplashViewController.swift in Sources */,
 				499E8BE22502A0BA00AC3E90 /* Screen.swift in Sources */,
 				499E8C57250DA64800AC3E90 /* ProfileCoordinator.swift in Sources */,
 				495C7DCB25B172BB002964BE /* ServiceProvider.swift in Sources */,
+				49B2184525B2730500105287 /* MainCoordinator.swift in Sources */,
 				499E8C42250CE45300AC3E90 /* Toaster.swift in Sources */,
 				499E8C162509B80C00AC3E90 /* Result.swift in Sources */,
 				495C7DC525B17233002964BE /* CoordinatorType.swift in Sources */,
@@ -640,6 +651,7 @@
 				493AAE66251A115300F927B2 /* UIScrollView.swift in Sources */,
 				498F8EC524FAA5A8005637F5 /* AppDelegate.swift in Sources */,
 				495C7DC225B17217002964BE /* Transitionable.swift in Sources */,
+				49B2184225B272FF00105287 /* LoginCoordinator.swift in Sources */,
 				498F8F2424FCB6EF005637F5 /* BaseCollectionViewCell.swift in Sources */,
 				498F8F1E24FC8FCC005637F5 /* Font.swift in Sources */,
 				498F8EEC24FAA979005637F5 /* UnsplashAPI.swift in Sources */,

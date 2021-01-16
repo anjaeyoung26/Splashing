@@ -7,5 +7,8 @@
 //
 
 enum Transition {
-    
+    case showLogin
+    case showMain
+    case showDetail
+    case showSearch
 }

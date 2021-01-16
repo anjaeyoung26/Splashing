@@ -7,14 +7,14 @@
 //
 
 struct Result: Decodable {
-  var total  : Int
-  var pages  : Int
-  var results: [Photo]
+    var total  : Int
+    var pages  : Int
+    var results: [Photo]
 }
 
 extension Result {
-  enum CodingKeys: String, CodingKey {
-    case total, results
-    case pages = "total_pages"
-  }
+    enum CodingKeys: String, CodingKey {
+        case total, results
+        case pages = "total_pages"
+    }
 }

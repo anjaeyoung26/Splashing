@@ -10,38 +10,40 @@ import RxCocoa
 import RxSwift
 
 class SplashViewModel: ViewModel {
-  
-  struct Input {
-    let viewDidAppear = PublishRelay<Void>()
-  }
-  
-  struct Output {
-    let isLoading       = ActivityIndicator()
-    let isAuthenticated = PublishRelay<Bool>()
-  }
-  
-  struct Dependency {
-    let userService: UserServiceType
-  }
-  
-  let input      = Input()
-  let output     = Output()
-  let disposeBag = DisposeBag()
-
-  let provider: ServiceProviderType
-  
-  init(provider: ServiceProviderType) {
-    self.provider = provider
     
-    input.viewDidAppear
-      .flatMap {
-        self.provider.userService.fetch()
-          .trackActivity(self.output.isLoading)
-      }
-      .asObservable()
-      .map { true }
-      .catchErrorJustReturn(false)
-      .bind(to: output.isAuthenticated)
-      .disposed(by: disposeBag)
-  }
+    struct Input {
+        let viewDidAppear = PublishRelay<Void>()
+    }
+    
+    struct Output {
+        let isLoading       = ActivityIndicator()
+        let isAuthenticated = PublishRelay<Bool>()
+    }
+    
+    struct Dependency {
+        let userService: UserServiceType
+    }
+    
+    let input      = Input()
+    let output     = Output()
+    let disposeBag = DisposeBag()
+    
+    let provider: ServiceProviderType
+    
+    weak var coordinator: CoordinatorType?
+    
+    init(provider: ServiceProviderType) {
+        self.provider = provider
+        
+        input.viewDidAppear
+            .flatMap {
+                self.provider.userService.fetch()
+                    .trackActivity(self.output.isLoading)
+            }
+            .asObservable()
+            .map { true }
+            .catchErrorJustReturn(false)
+            .bind(to: output.isAuthenticated)
+            .disposed(by: disposeBag)
+    }
 }
