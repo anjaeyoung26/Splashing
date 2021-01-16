@@ -48,10 +48,10 @@ class SettingViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableViewModel = SettingTableViewModel(viewController: self)
+        viewModel = SettingTableViewModel(viewController: self)
         
-        tableView.delegate   = tableViewModel
-        tableView.dataSource = tableViewModel
+        tableView.delegate   = viewModel
+        tableView.dataSource = viewModel
     }
     
     override func addSubview() {
