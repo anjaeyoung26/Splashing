@@ -10,9 +10,9 @@ import UIKit
 
 class SplashCoordinator: CoordinatorType {
     var window: UIWindow?
-    var baseViewController: UIViewController?
+    var baseViewController: UIViewController
     
-    init(window: UIWindow?) {
+    init(window: UIWindow) {
         self.window = window
         
         let provider = ServiceProvider()
@@ -24,15 +24,17 @@ class SplashCoordinator: CoordinatorType {
     }
     
     func performTransition(_ transition: Transition) {
+        guard let _window = window else { return }
+        
         switch transition {
         case .showLogin:
             let coordinator = LoginCoordinator()
         
-            window.rootViewController = coordinator.baseViewController
+            _window.rootViewController = coordinator.baseViewController
         case .showMain:
             let coordinator = MainCoordinator()
         
-            window.rootViewController = coordinator.baseViewController
+            _window.rootViewController = coordinator.baseViewController
         default:
             return
         }
