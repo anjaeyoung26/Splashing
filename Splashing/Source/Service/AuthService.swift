@@ -17,15 +17,15 @@ protocol AuthServiceType {
     var accessToken: AccessToken? { get }
 }
 
-class AuthService: NSObject, BaseService, AuthServiceType {
+class AuthService: BaseService, AuthServiceType {
     let callbackSubject = PublishSubject<String>()
     let keychain        = Keychain(service: "com.splashing.ios")
     
     var authenticateSession: ASWebAuthenticationSession?
     var accessToken:         AccessToken?
     
-    override init() {
-        super.init()
+    override init(provider: ServiceProviderType, networking: NetworkingProtocol) {
+        super.init(provider: provider, networking: networking)
         self.accessToken = self.loadAccessToken()
         log.debug("Access token exists: \(self.accessToken != nil)")
     }

@@ -6,7 +6,9 @@
 //  Copyright © 2021 안재영. All rights reserved.
 //
 
-class BaseService {
+import Foundation
+
+class BaseService: NSObject {
     unowned let provider: ServiceProviderType
     
     let networking: NetworkingProtocol
@@ -14,5 +16,6 @@ class BaseService {
     init(provider: ServiceProviderType, networking: NetworkingProtocol) {
         self.provider = provider
         self.networking = networking
+        super.init()
     }
 }
