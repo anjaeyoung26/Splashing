@@ -6,4 +6,29 @@
 //  Copyright © 2021 안재영. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class LoginCoordinator: CoordinatorType {
+    
+    var baseViewController: UIViewController
+    
+    init() {
+        let provider = ServiceProvider()
+        let viewModel = LoginViewModel(provider: provider)
+        
+        baseViewController = LoginViewController(viewModel: viewModel)
+        
+        viewModel.coordinator = self
+    }
+    
+    func performTransition(_ transition: Transition) {
+        switch transition {
+        case .showMain:
+            let coordinator = MainCoordinator()
+            
+            baseViewController.present(coordinator.baseViewController, animated: true, completion: nil)
+        default:
+            return
+        }
+    }
+}
