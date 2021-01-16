@@ -19,4 +19,8 @@ class DetailCoordinator: CoordinatorType {
         
         viewModel.coordinator = self
     }
+    
+    func performTransition(_ transition: Transition) {
+        
+    }
 }
