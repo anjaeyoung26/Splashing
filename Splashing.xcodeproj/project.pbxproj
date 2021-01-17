@@ -472,7 +472,7 @@
 				498F8EBD24FAA5A8005637F5 /* Sources */,
 				498F8EBE24FAA5A8005637F5 /* Frameworks */,
 				498F8EBF24FAA5A8005637F5 /* Resources */,
-				9437A39AD98F68C21479B8AD /* [CP] Embed Pods Frameworks */,
+				77710A847D687923B6E40B45 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -536,7 +536,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9437A39AD98F68C21479B8AD /* [CP] Embed Pods Frameworks */ = {
+		77710A847D687923B6E40B45 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -791,7 +791,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VGKKY4727B;
-				INFOPLIST_FILE = "/Users/anjaeyeong/Desktop/Splashing/Splashing/Supporting File/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Splashing/Supporting File/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -814,7 +814,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = VGKKY4727B;
-				INFOPLIST_FILE = "/Users/anjaeyeong/Desktop/Splashing/Splashing/Supporting File/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Splashing/Supporting File/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
