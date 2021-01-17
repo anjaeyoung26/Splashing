@@ -34,7 +34,7 @@ class SettingViewController: BaseViewController {
         $0.backgroundColor = .black
     }
     
-    let viewModel: SettingTableViewModel
+    var viewModel: SettingTableViewModel
     
     init(viewModel: SettingTableViewModel) {
         self.viewModel = viewModel
