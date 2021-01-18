@@ -35,6 +35,13 @@ class SearchViewModel: ViewModel {
     init(provider: ServiceProviderType) {
         self.provider = provider
         
+        input.photoSelected
+            .subscribe(onNext: { [weak self] photo in
+                guard let weakSelf = self else { return }
+                weakSelf.coordinator?.performTransition(.showDetail(photo))
+            })
+            .disposed(by: disposeBag)
+        
         input.searchButtonTapped
             .flatMap {
                 self.provider.photoService.search(query: $0)

@@ -39,6 +39,36 @@ class MainViewModel: ViewModel {
     init(provider: ServiceProviderType) {
         self.provider = provider
         
+        // Coordinate
+        input.photoSelected
+            .subscribe(onNext: { [weak self] photo in
+                guard let weakSelf = self else { return }
+                weakSelf.coordinator?.performTransition(.showDetail(photo))
+            })
+            .disposed(by: disposeBag)
+        
+        input.searchBarTapped
+            .subscribe(onNext: { [weak self] in
+                guard let weakSelf = self else { return }
+                weakSelf.coordinator?.performTransition(.showSearch)
+            })
+            .disposed(by: disposeBag)
+        
+        input.profileButtonTapped
+            .subscribe(onNext: { [weak self] in
+                guard let weakSelf = self else { return }
+                weakSelf.coordinator?.performTransition(.showProfile)
+            })
+            .disposed(by: disposeBag)
+        
+        input.settingButtonTapped
+            .subscribe(onNext: { [weak self] in
+                guard let weakSelf = self else { return }
+                weakSelf.coordinator?.performTransition(.showSetting)
+            })
+            .disposed(by: disposeBag)
+        
+        // Business logic
         let reachedBottom = input.isReachedBottom
             .filterTrue()
         

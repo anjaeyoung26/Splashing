@@ -17,7 +17,6 @@ class SplashViewModel: ViewModel {
     
     struct Output {
         let isLoading       = ActivityIndicator()
-        let isAuthenticated = PublishRelay<Bool>()
     }
     
     struct Dependency {
@@ -37,13 +36,20 @@ class SplashViewModel: ViewModel {
         
         input.viewDidAppear
             .flatMap {
-                self.provider.userService.fetch()
+                self.provider.userService.fetchMe()
                     .trackActivity(self.output.isLoading)
             }
-            .asObservable()
             .map { true }
             .catchErrorJustReturn(false)
-            .bind(to: output.isAuthenticated)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isLoggedIn in
+                guard let weakSelf = self else { return }
+                if isLoggedIn {
+                    weakSelf.coordinator?.performTransition(.showMain)
+                } else {
+                    weakSelf.coordinator?.performTransition(.showLogin)
+                }
+            })
             .disposed(by: disposeBag)
     }
 }

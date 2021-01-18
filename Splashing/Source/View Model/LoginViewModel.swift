@@ -17,7 +17,6 @@ class LoginViewModel: ViewModel {
     
     struct Output {
         let isLoading   = ActivityIndicator()
-        let setLoggedIn = PublishRelay<Bool>()
     }
     
     let input      = Input()
@@ -36,15 +35,23 @@ class LoginViewModel: ViewModel {
                 self.provider.authService.authorize()
             }
             .asObservable()
-        
+
         setLoggedIn
             .flatMap {
-                self.provider.userService.fetch()
+                self.provider.userService.fetchMe()
                     .trackActivity(self.output.isLoading)
             }
             .map { true }
             .catchErrorJustReturn(false)
-            .bind(to: output.setLoggedIn)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] isLoggedIn in
+                guard let weakSelf = self else { return }
+                if isLoggedIn {
+                    weakSelf.coordinator?.performTransition(.showMain)
+                } else {
+                    Toaster.show(message: "Could not login. Please retry or check your account.", delay: 1.5, completion: nil)
+                }
+            })
             .disposed(by: disposeBag)
     }
 }

@@ -35,6 +35,14 @@ class ProfileViewModel: ViewModel {
     init(provider: ServiceProviderType) {
         self.provider = provider
         
+        // Coordinate
+        input.photoSelected
+            .subscribe(onNext: { [weak self] photo in
+                guard let weakSelf = self else { return }
+                weakSelf.coordinator?.performTransition(.showDetail(photo))
+            })
+            .disposed(by: disposeBag)
+        
         input.logoutButtonTapped
             .map {
                 self.provider.authService.logout()
@@ -42,6 +50,7 @@ class ProfileViewModel: ViewModel {
             .bind(to: output.completeLogout)
             .disposed(by: disposeBag)
         
+        // Business logic
         let currentUser = input.viewDidAppear
             .flatMap {
                 self.provider.userService.currentUser
