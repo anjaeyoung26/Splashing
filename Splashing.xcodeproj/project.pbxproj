@@ -84,6 +84,7 @@
 		49B2184825B2731000105287 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B2184725B2731000105287 /* SearchCoordinator.swift */; };
 		49B2184B25B2875200105287 /* DetailCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B2184A25B2875200105287 /* DetailCoordinator.swift */; };
 		49B2184E25B2875A00105287 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B2184D25B2875A00105287 /* ProfileCoordinator.swift */; };
+		49B21B5325B4650200105287 /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B21B5225B4650200105287 /* SettingCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -167,6 +168,7 @@
 		49B2184725B2731000105287 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
 		49B2184A25B2875200105287 /* DetailCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailCoordinator.swift; sourceTree = "<group>"; };
 		49B2184D25B2875A00105287 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		49B21B5225B4650200105287 /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		816BC0C6C421EB9DB06D5F02 /* Pods-Splashing.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splashing.release.xcconfig"; path = "Target Support Files/Pods-Splashing/Pods-Splashing.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -211,6 +213,7 @@
 				49B2184725B2731000105287 /* SearchCoordinator.swift */,
 				49B2184A25B2875200105287 /* DetailCoordinator.swift */,
 				49B2184D25B2875A00105287 /* ProfileCoordinator.swift */,
+				49B21B5225B4650200105287 /* SettingCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -607,6 +610,7 @@
 				498F8F2624FCB7E7005637F5 /* ShotCollectionViewCell.swift in Sources */,
 				499E8BDD2502027400AC3E90 /* SplashViewModel.swift in Sources */,
 				493AAE6A251A175200F927B2 /* Observable.swift in Sources */,
+				49B21B5325B4650200105287 /* SettingCoordinator.swift in Sources */,
 				498F8F0F24FB7929005637F5 /* Icon.swift in Sources */,
 				493AAE66251A115300F927B2 /* UIScrollView.swift in Sources */,
 				498F8EC524FAA5A8005637F5 /* AppDelegate.swift in Sources */,

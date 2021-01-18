@@ -16,17 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        guard var _window = window else {
-            print("Could not load window.")
-            return false
-        }
+        window = UIWindow(frame: UIScreen.main.bounds)
         
-        splashCoordinator = SplashCoordinator(window: _window)
+        splashCoordinator = SplashCoordinator(window: window!)
         
-        _window = UIWindow(frame: UIScreen.main.bounds)
-        _window.rootViewController = splashCoordinator?.baseViewController
-        _window.backgroundColor = .white
-        _window.makeKeyAndVisible()
+        window?.rootViewController = splashCoordinator?.baseViewController
+        window?.backgroundColor = .white
+        window?.makeKeyAndVisible()
         
         return true
     }
