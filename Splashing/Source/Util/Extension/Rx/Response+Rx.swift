@@ -12,7 +12,11 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
     func mapJSON<Model: Decodable>(_ model: Model.Type) -> PrimitiveSequence<Trait, Model> {
         return self
             .map { response in
-                try JSONDecoder().decode(model, from: response.data)
+                // For debugging
+                let JSONString = String(data: response.data, encoding: String.Encoding.utf8)
+                print(JSONString)
+                
+                return try JSONDecoder().decode(model, from: response.data)
             }
             .do(onError: { error in
                 log.error(error)
