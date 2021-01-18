@@ -178,7 +178,8 @@ class ProfileViewController: BaseViewController {
     
     func presentCurrentUser(with user: User) {
         let urlString = user.images.small
-        let url       = URL(string: urlString)
+        let url = URL(string: urlString)
+        
         self.image.kf.setImage(with: url)
         self.name.text = user.name
     }
