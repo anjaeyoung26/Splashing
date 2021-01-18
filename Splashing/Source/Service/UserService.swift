@@ -29,8 +29,8 @@ class UserService: BaseService, UserServiceType {
         return self.networking.request(.me(accessToken: accessToken))
             .mapJSON(User.self)
             .do(onSuccess: { [weak self] user in
-                guard let weakSelf = self else { return }
-                weakSelf.userSubject.onNext(user)
+                guard let `self` = self else { return }
+                self.userSubject.onNext(user)
             })
             .map { _ in }
     }

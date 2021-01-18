@@ -43,11 +43,11 @@ class SplashViewModel: ViewModel {
             .catchErrorJustReturn(false)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoggedIn in
-                guard let weakSelf = self else { return }
+                guard let `self` = self else { return }
                 if isLoggedIn {
-                    weakSelf.coordinator?.performTransition(.showMain)
+                    self.coordinator?.performTransition(.showMain)
                 } else {
-                    weakSelf.coordinator?.performTransition(.showLogin)
+                    self.coordinator?.performTransition(.showLogin)
                 }
             })
             .disposed(by: disposeBag)

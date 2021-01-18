@@ -42,29 +42,29 @@ class MainViewModel: ViewModel {
         // Coordinate
         input.photoSelected
             .subscribe(onNext: { [weak self] photo in
-                guard let weakSelf = self else { return }
-                weakSelf.coordinator?.performTransition(.showDetail(photo))
+                guard let `self` = self else { return }
+                self.coordinator?.performTransition(.showDetail(photo))
             })
             .disposed(by: disposeBag)
         
         input.searchBarTapped
             .subscribe(onNext: { [weak self] in
-                guard let weakSelf = self else { return }
-                weakSelf.coordinator?.performTransition(.showSearch)
+                guard let `self` = self else { return }
+                self.coordinator?.performTransition(.showSearch)
             })
             .disposed(by: disposeBag)
         
         input.profileButtonTapped
             .subscribe(onNext: { [weak self] in
-                guard let weakSelf = self else { return }
-                weakSelf.coordinator?.performTransition(.showProfile)
+                guard let `self` = self else { return }
+                self.coordinator?.performTransition(.showProfile)
             })
             .disposed(by: disposeBag)
         
         input.settingButtonTapped
             .subscribe(onNext: { [weak self] in
-                guard let weakSelf = self else { return }
-                weakSelf.coordinator?.performTransition(.showSetting)
+                guard let `self` = self else { return }
+                self.coordinator?.performTransition(.showSetting)
             })
             .disposed(by: disposeBag)
         

@@ -45,9 +45,9 @@ class LoginViewModel: ViewModel {
             .catchErrorJustReturn(false)
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] isLoggedIn in
-                guard let weakSelf = self else { return }
+                guard let `self` = self else { return }
                 if isLoggedIn {
-                    weakSelf.coordinator?.performTransition(.showMain)
+                    self.coordinator?.performTransition(.showMain)
                 } else {
                     Toaster.show(message: "Could not login. Please retry or check your account.", delay: 1.5, completion: nil)
                 }

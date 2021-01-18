@@ -37,8 +37,8 @@ class SearchViewModel: ViewModel {
         
         input.photoSelected
             .subscribe(onNext: { [weak self] photo in
-                guard let weakSelf = self else { return }
-                weakSelf.coordinator?.performTransition(.showDetail(photo))
+                guard let `self` = self else { return }
+                self.coordinator?.performTransition(.showDetail(photo))
             })
             .disposed(by: disposeBag)
         
