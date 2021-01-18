@@ -13,10 +13,11 @@ extension PrimitiveSequence where Trait == SingleTrait, Element == Response {
         return self
             .map { response in
                 // For debugging
+                /*
                 let JSONString = String(data: response.data, encoding: String.Encoding.utf8)
                 print(JSONString)
-                
-                return try JSONDecoder().decode(model, from: response.data)
+                */
+                try JSONDecoder().decode(model, from: response.data)
             }
             .do(onError: { error in
                 log.error(error)
