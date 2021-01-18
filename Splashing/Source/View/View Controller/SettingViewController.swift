@@ -34,16 +34,7 @@ class SettingViewController: BaseViewController {
         $0.backgroundColor = .black
     }
     
-    var viewModel: SettingTableViewModel
-    
-    init(viewModel: SettingTableViewModel) {
-        self.viewModel = viewModel
-        super.init(nibName: nil, bundle: nil)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError()
-    }
+    var viewModel: SettingTableViewModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
