@@ -9,8 +9,8 @@
 import UIKit
 
 class LoginCoordinator: CoordinatorType {
-    
     var baseViewController: UIViewController
+    var coordinator: CoordinatorType?
     
     init() {
         let provider = ServiceProvider()
@@ -24,11 +24,14 @@ class LoginCoordinator: CoordinatorType {
     func performTransition(_ transition: Transition) {
         switch transition {
         case .showMain:
-            let coordinator = MainCoordinator()
-            
-            baseViewController.present(coordinator.baseViewController, animated: true, completion: nil)
+            coordinator = MainCoordinator()
         default:
             return
+        }
+        
+        if let target = coordinator?.baseViewController {
+            target.modalPresentationStyle = .fullScreen
+            baseViewController.present(target, animated: true, completion: nil)
         }
     }
 }

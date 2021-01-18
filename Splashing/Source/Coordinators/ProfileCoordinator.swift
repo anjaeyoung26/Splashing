@@ -10,6 +10,7 @@ import UIKit
 
 class ProfileCoordinator: CoordinatorType {
     var baseViewController: UIViewController
+    var coordinator: CoordinatorType?
     
     init() {
         let provider = ServiceProvider()
@@ -21,6 +22,16 @@ class ProfileCoordinator: CoordinatorType {
     }
     
     func performTransition(_ transition: Transition) {
+        switch transition {
+        case .showDetail(let item):
+            coordinator = DetailCoordinator(item: item)
+        default:
+            return
+        }
         
+        if let target = coordinator?.baseViewController {
+            target.modalPresentationStyle = .fullScreen
+            baseViewController.present(target, animated: true, completion: nil)
+        }
     }
 }

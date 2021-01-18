@@ -10,6 +10,7 @@ import UIKit
 
 class SearchCoordinator: CoordinatorType {
     var baseViewController: UIViewController
+    var coordinator: CoordinatorType?
     
     init() {
         let provider = ServiceProvider()
@@ -22,12 +23,15 @@ class SearchCoordinator: CoordinatorType {
     
     func performTransition(_ transition: Transition) {
         switch transition {
-        case .showDetail:
-            let coordinator = DetailCoordinator()
-            
-            baseViewController.present(coordinator.baseViewController, animated: true, completion: nil)
+        case .showDetail(let item):
+            coordinator = DetailCoordinator(item: item)
         default:
             return
+        }
+        
+        if let target = coordinator?.baseViewController {
+            target.modalPresentationStyle = .fullScreen
+            baseViewController.present(target, animated: true, completion: nil)
         }
     }
 }

@@ -10,12 +10,17 @@ import UIKit
 
 class DetailCoordinator: CoordinatorType {
     var baseViewController: UIViewController
+    var item: Photo
     
-    init() {
+    init(item: Photo) {
+        self.item = item
+        
         let provider = ServiceProvider()
         let viewModel = DetailViewModel(provider: provider)
+        let viewController = DetailViewController(viewModel: viewModel)
+        viewController.photo = item
         
-        baseViewController = DetailViewController(viewModel: viewModel)
+        baseViewController = viewController
         
         viewModel.coordinator = self
     }
