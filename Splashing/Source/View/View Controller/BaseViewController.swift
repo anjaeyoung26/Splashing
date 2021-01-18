@@ -22,9 +22,6 @@ class BaseViewController: UIViewController {
         view.backgroundColor = .black
         tabBarController?.tabBar.barTintColor = .black
         tabBarController?.tabBar.tintColor    = .white
-
-        self.modalPresentationStyle = .fullScreen
-        self.modalTransitionStyle   = .crossDissolve
     }
     
     func addSubview() {
