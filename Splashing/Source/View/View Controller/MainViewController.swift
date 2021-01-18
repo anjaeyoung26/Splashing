@@ -162,26 +162,30 @@ class MainViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         settingButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.settingButtonTapped)
             .disposed(by: disposeBag)
         
         profileButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.profileButtonTapped)
             .disposed(by: disposeBag)
         
         searchBar.rx.textDidBeginEditing
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.searchBarTapped)
             .disposed(by: disposeBag)
         
-        collectionView.rx
-            .setDelegate(self)
-            .disposed(by: disposeBag)
-        
         collectionView.rx.itemSelected
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .map { indexPath in
                 self.latestPhotos.value[indexPath.row]
             }
             .bind(to: viewModel.input.photoSelected)
+            .disposed(by: disposeBag)
+        
+        collectionView.rx
+            .setDelegate(self)
             .disposed(by: disposeBag)
         
         scrollView.rx.didScroll

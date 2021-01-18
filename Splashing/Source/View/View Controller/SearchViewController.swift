@@ -99,6 +99,7 @@ class SearchViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         searchBar.rx.searchButtonClicked
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .withLatestFrom(searchBar.rx.text.orEmpty)
             .bind(to: viewModel.input.searchButtonTapped)
             .disposed(by: disposeBag)

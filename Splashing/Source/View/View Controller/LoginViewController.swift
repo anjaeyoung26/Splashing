@@ -83,6 +83,7 @@ class LoginViewController: BaseViewController {
     
     override func binding() {
         loginButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.loginButtonTapped)
             .disposed(by: disposeBag)
         

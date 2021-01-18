@@ -145,6 +145,7 @@ class DetailViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         downloadButton.rx.tap
+            .throttle(.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: viewModel.input.downloadButtonTapped)
             .disposed(by: disposeBag)
         
