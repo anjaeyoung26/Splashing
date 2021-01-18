@@ -12,4 +12,5 @@ enum Transition {
     case showDetail(Photo)
     case showSearch
     case showProfile
+    case showSetting
 }
