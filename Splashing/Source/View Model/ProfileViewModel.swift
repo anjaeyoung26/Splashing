@@ -53,7 +53,14 @@ class ProfileViewModel: ViewModel {
         // Business logic
         let currentUser = input.viewDidAppear
             .flatMap {
+                self.provider.userService.fetchMe()
+            }
+            .flatMap {
                 self.provider.userService.currentUser
+            }
+            .catchOnNil { () -> Observable<User> in
+                Toaster.show(message: "Could not fetch user information", delay: 2.0, completion: nil)
+                return .never()
             }
             .share()
         
