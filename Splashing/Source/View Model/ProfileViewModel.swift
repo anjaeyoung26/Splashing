@@ -58,6 +58,7 @@ class ProfileViewModel: ViewModel {
             .flatMap {
                 self.provider.userService.currentUser
             }
+            .observeOn(MainScheduler.instance)
             .catchOnNil { () -> Observable<User> in
                 Toaster.show(message: "Could not fetch user information", delay: 2.0, completion: nil)
                 return .never()
