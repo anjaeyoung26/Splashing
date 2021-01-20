@@ -69,7 +69,7 @@ class ProfileViewModel: ViewModel {
             .disposed(by: disposeBag)
         
         let name = currentUser
-            .compactMap { $0?.name }
+            .map { $0.name }
         
         let trigger = input.segmentIndex
             .asObservable()
