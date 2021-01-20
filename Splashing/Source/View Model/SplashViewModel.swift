@@ -16,7 +16,7 @@ class SplashViewModel: ViewModel {
     }
     
     struct Output {
-        let isLoading       = ActivityIndicator()
+        let isLoading = ActivityIndicator()
     }
     
     struct Dependency {
