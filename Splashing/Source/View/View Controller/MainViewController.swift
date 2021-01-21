@@ -25,7 +25,7 @@ class MainViewController: BaseViewController {
     
     let scrollView = UIScrollView(frame: Screen.frame).then {
         $0.contentInsetAdjustmentBehavior = .never
-        $0.bounces = false
+        $0.bounces = true
     }
     
     let backgroundImage = UIImageView().then {
@@ -119,14 +119,14 @@ class MainViewController: BaseViewController {
         }
         
         settingButton.snp.makeConstraints {
-            $0.top.equalTo(backgroundImage.snp.top).offset(50)
-            $0.left.equalTo(backgroundImage.snp.left).offset(20)
+            $0.top.equalTo(view.snp.top).offset(50)
+            $0.left.equalTo(view.snp.left).offset(20)
             $0.width.height.equalTo(Height.settingButton)
         }
         
         profileButton.snp.makeConstraints {
-            $0.top.equalTo(backgroundImage.snp.top).offset(45)
-            $0.right.equalTo(backgroundImage.snp.right).offset(-20)
+            $0.top.equalTo(view.snp.top).offset(45)
+            $0.right.equalTo(view.snp.right).offset(-20)
             $0.width.height.equalTo(Height.profileButton)
         }
         
@@ -194,6 +194,10 @@ class MainViewController: BaseViewController {
             }
             .distinctUntilChanged()
             .bind(to: viewModel.input.isReachedBottom)
+            .disposed(by: disposeBag)
+        
+        scrollView.rx.didScroll
+            .bind(to: scrollView.rx.parallex(with: backgroundImage))
             .disposed(by: disposeBag)
         
         let randomPhoto = viewModel.output.randomPhoto
