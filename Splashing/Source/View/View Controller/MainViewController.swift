@@ -157,8 +157,9 @@ class MainViewController: BaseViewController {
     }
     
     override func binding() {
-        self.rx.viewDidAppear
-            .bind(to: viewModel.input.viewDidAppear)
+        Observable<Int>.interval(.seconds(180), scheduler: MainScheduler.instance)
+            .startWith(1)
+            .bind(to: viewModel.input.timerElapsed)
             .disposed(by: disposeBag)
         
         settingButton.rx.tap

@@ -13,12 +13,12 @@ import RxSwift
 class MainViewModel: ViewModel {
     
     struct Input {
-        let viewDidAppear       = PublishRelay<Void>()
         let photoSelected       = PublishRelay<Photo>()
         let isReachedBottom     = PublishRelay<Bool>()
         let searchBarTapped     = PublishRelay<Void>()
         let profileButtonTapped = PublishRelay<Void>()
         let settingButtonTapped = PublishRelay<Void>()
+        let timerElapsed        = PublishRelay<Int>()
     }
     
     struct Output {
@@ -84,14 +84,20 @@ class MainViewModel: ViewModel {
             .map { $0.nextURL }
             .bind(to: self.nextURL)
             .disposed(by: disposeBag)
-        
-        let viewDidAppearEvent = input.viewDidAppear
+
+        let timerElapsedEvent = input.timerElapsed
             .subscribeOn(ConcurrentDispatchQueueScheduler(qos: .background))
             .share()
         
-        let latestPhotos = viewDidAppearEvent
-            .flatMap {
+        let latestPhotos = timerElapsedEvent
+            .flatMap { _ in
                 self.provider.photoService.latest()
+            }
+            .share()
+        
+        let randomPhotos = timerElapsedEvent
+            .flatMap {_ in
+                self.provider.photoService.random()
             }
             .share()
         
@@ -103,12 +109,6 @@ class MainViewModel: ViewModel {
             { $0 + $1 }
             .bind(to: output.latestPhotos)
             .disposed(by: disposeBag)
-        
-        let randomPhotos = viewDidAppearEvent
-            .flatMap {
-                self.provider.photoService.random()
-            }
-            .share()
         
         latestPhotos
             .map { $0.nextURL }
