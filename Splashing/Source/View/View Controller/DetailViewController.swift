@@ -89,7 +89,7 @@ class DetailViewController: BaseViewController {
     
     override func setConstraints() {
         backButton.snp.makeConstraints {
-            $0.top.equalTo(scrollView.snp.top).offset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).offset(20)
             $0.left.equalTo(scrollView.readableContentGuide).offset(10)
             $0.height.equalTo(Height.backButton)
         }
