@@ -206,7 +206,7 @@ class MainViewController: BaseViewController {
             .share()
         
         randomPhoto
-            .compactMap { $0.transform(width: "700", height: "700") }
+            .map { $0.transform(width: "700", height: "700") }
             .bind(to: backgroundImage.kf.rx.image(options: [.transition(.fade(2.5))]))
             .disposed(by: disposeBag)
         
