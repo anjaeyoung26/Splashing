@@ -1,13 +1,11 @@
 # Splashing
- 
- Unsplash application clone
 
  ![Swift](http://img.shields.io/badge/Swift-5.3-orange.svg)
 
  인원 : 1명
  기간 : 2020.08.30 - 2020.09.27
 
- 설명 : [Unsplash](https://apps.apple.com/us/app/unsplash/id1290631746) 애플리케이션을 clone 하여 만들었습니다. [전수열](http://github.com/devxoul) 님의 [Drrrible](https://github.com/devxoul/Drrrible) 예제를 참고했습니다.
+ 설명 : [devxoul](http://github.com/devxoul)님의 [Drrrible](https://github.com/devxoul/Drrrible)을 참고한 [Unsplash](https://apps.apple.com/us/app/unsplash/id1290631746) Clone
 
  ## Screenshots
 
@@ -28,16 +26,15 @@
 
  ## Feature
 
- - Dependency injection with [Swinject](https://github.com/Swinject/Swinject)
+ - ~~Dependency injection with [Swinject](https://github.com/Swinject/Swinject)~~
  - OAuth 2.0
  - RxSwift + MVVM-C
- - Using Codable
+ - Codable
  - Without Storyboard
 
  ## Requirement
 
  - iOS 13
-    - Using `SFSymbol`
 
  - Swift 5
 
