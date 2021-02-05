@@ -6,6 +6,8 @@
 //  Copyright © 2021 안재영. All rights reserved.
 //
 
+// Source : https://github.com/devxoul/RxTodo/blob/master/RxTodo/Sources/Services/BaseService.swift
+
 import Foundation
 
 class BaseService: NSObject {
