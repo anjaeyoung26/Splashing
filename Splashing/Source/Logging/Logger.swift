@@ -6,6 +6,8 @@
 //  Copyright © 2020 안재영. All rights reserved.
 //
 
+// Source: https://github.com/devxoul/Drrrible/blob/master/Drrrible/Sources/Logging/Logger.swift
+
 import CocoaLumberjack
 
 extension DDLogFlag {
