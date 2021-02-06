@@ -6,6 +6,8 @@
 //  Copyright © 2021 안재영. All rights reserved.
 //
 
+// Source : https://github.com/devxoul/RxTodo/blob/master/RxTodo/Sources/Services/ServiceProvider.swift
+
 protocol ServiceProviderType: class {
     var networking: NetworkingProtocol { get }
     var authService: AuthServiceType { get }
