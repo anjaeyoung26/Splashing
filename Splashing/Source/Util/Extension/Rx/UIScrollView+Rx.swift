@@ -6,6 +6,8 @@
 //  Copyright © 2021 안재영. All rights reserved.
 //
 
+// Source : http://minsone.github.io/mac/ios/how-to-make-similar-twitter-cover-in-swift
+
 import RxCocoa
 import RxSwift
 
